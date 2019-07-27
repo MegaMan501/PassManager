@@ -193,6 +193,13 @@ QPushButton:pressed {
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_password</tabstop>
+  <tabstop>lineEdit_confirm</tabstop>
+  <tabstop>pushButton_register</tabstop>
+  <tabstop>pushButton_exit</tabstop>
+  <tabstop>label_title</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
