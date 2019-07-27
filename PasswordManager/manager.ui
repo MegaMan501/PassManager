@@ -119,7 +119,11 @@ QGroupBox::title {
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_pass"/>
+           <widget class="QLineEdit" name="lineEdit_pass">
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
