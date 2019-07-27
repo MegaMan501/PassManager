@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Manager</string>
+   <string>PassManager</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGroupBox" name="accounts_input">
@@ -42,7 +42,7 @@ QGroupBox::title {
     <property name="title">
      <string>Add, Update, or Delete an Account: </string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -241,7 +241,7 @@ QPushButton:pressed {
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
