@@ -21,3 +21,11 @@ PassdManager is a local password manager build on the QT framework, using SQLCip
 - [X] Users can view decrypted passwords when request.
 
 ## ScreenShots:
+
+First Time: 
+- ![registration](https://github.com/MegaMan501/PassManager/blob/master/registration.png)
+
+Subsequent Times: 
+
+- ![login](https://github.com/MegaMan501/PassManager/blob/master/login.png)
+- ![manager](https://github.com/MegaMan501/PassManager/blob/master/manager.png)
