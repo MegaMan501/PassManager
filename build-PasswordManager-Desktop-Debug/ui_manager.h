@@ -73,6 +73,11 @@ public:
             Manager->setObjectName(QStringLiteral("Manager"));
         Manager->setEnabled(true);
         Manager->resize(750, 650);
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(Manager->sizePolicy().hasHeightForWidth());
+        Manager->setSizePolicy(sizePolicy);
         actionexit = new QAction(Manager);
         actionexit->setObjectName(QStringLiteral("actionexit"));
         centralWidget = new QWidget(Manager);
@@ -80,6 +85,11 @@ public:
         accounts_input = new QGroupBox(centralWidget);
         accounts_input->setObjectName(QStringLiteral("accounts_input"));
         accounts_input->setGeometry(QRect(20, 10, 701, 201));
+        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(accounts_input->sizePolicy().hasHeightForWidth());
+        accounts_input->setSizePolicy(sizePolicy1);
         accounts_input->setStyleSheet(QLatin1String("QGroupBox {\n"
 "    border: 2px solid gray;\n"
 "    border-radius: 5px;\n"
@@ -251,16 +261,19 @@ public:
         accounts_table->setContentsMargins(0, 0, 0, 0);
         tableView = new QTableView(layoutWidget1);
         tableView->setObjectName(QStringLiteral("tableView"));
+        sizePolicy1.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
+        tableView->setSizePolicy(sizePolicy1);
         tableView->setAutoFillBackground(false);
         tableView->setStyleSheet(QLatin1String(" QTableView {\n"
-"alternate-background-color: lightblue;\n"
+"alternate-background-color: rgb(114, 159, 207);\n"
 "}\n"
 "\n"
 " QTableView::item:focus {\n"
-" selection-background-color: blue; \n"
+" selection-background-color: rgb(52, 101, 164); \n"
 "}"));
-        tableView->setFrameShape(QFrame::NoFrame);
+        tableView->setFrameShape(QFrame::StyledPanel);
         tableView->setFrameShadow(QFrame::Plain);
+        tableView->setMidLineWidth(0);
         tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
         tableView->setAlternatingRowColors(true);
         tableView->setShowGrid(true);
@@ -271,11 +284,11 @@ public:
 
         pushButton_load = new QPushButton(layoutWidget1);
         pushButton_load->setObjectName(QStringLiteral("pushButton_load"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(pushButton_load->sizePolicy().hasHeightForWidth());
-        pushButton_load->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(pushButton_load->sizePolicy().hasHeightForWidth());
+        pushButton_load->setSizePolicy(sizePolicy2);
         pushButton_load->setStyleSheet(QLatin1String("QPushButton {\n"
 "    background-color: rgb(206, 92, 0);\n"
 "    border-style: outset;\n"

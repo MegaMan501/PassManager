@@ -20,15 +20,14 @@ class Login : public QDialog
 public:
     QSqlDatabase db;
     QString password;
+    const QString path = QStandardPaths::locate(QStandardPaths::HomeLocation, "accounts.db");
 
     bool openDB() {
-        const QString path = QStandardPaths::locate(QStandardPaths::HomeLocation, "accounts.db");
         db = QSqlDatabase::addDatabase("QSQLCIPHER");
         db.setDatabaseName(path);
 
         if(!db.open())
             return false;
-
         return true;
     }
 

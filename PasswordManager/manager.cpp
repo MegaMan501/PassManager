@@ -33,16 +33,6 @@ Manager::Manager(QWidget *parent) :
              +log->window()->rect().center()
              -rect().center());
     }
-
-    // Initial connection
-    Login conn;
-    if(!conn.openDB()) {
-        QMessageBox::critical(this,tr("Missing Accounts Database"),
-                              tr("Cannot Log into Password Manager,"
-                                 "\n since accounts.db has been deleted or moved."),
-                              QMessageBox::Ok);
-        QCoreApplication::quit();
-    }
 }
 
 Manager::~Manager()
@@ -52,20 +42,19 @@ Manager::~Manager()
 
 void Manager::on_pushButton_save_clicked()
 {
-    Login conn;
-    //id = ui->lineEdit_id->text();
     acc = ui->lineEdit_acc->text();
     user = ui->lineEdit_user->text();
     pass = ui->lineEdit_pass->text();
     comment = ui->textEdit_comments->toPlainText();
 
-    if(!conn.openDB()) {
+    if(!log->openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
                               tr("Cannot Log into Password Manager,"
                                  "\n since accounts.db has been deleted or moved."),
                               QMessageBox::Ok);
         QCoreApplication::quit();
     }
+    log->openDB();
 
     // prepare insert query
     QSqlQuery qry;
@@ -76,7 +65,7 @@ void Manager::on_pushButton_save_clicked()
     if(qry.exec())
     {
         QMessageBox::information(this,tr("Save"),tr("saved"));
-        conn.closeDB();
+        log->closeDB();
         on_pushButton_load_clicked();
     }
     else {
@@ -88,14 +77,12 @@ void Manager::on_pushButton_save_clicked()
 
 void Manager::on_pushButton_update_clicked()
 {
-    Login conn;
-    //id = ui->lineEdit_id->text();
     acc = ui->lineEdit_acc->text();
     user = ui->lineEdit_user->text();
     pass = ui->lineEdit_pass->text();
     comment = ui->textEdit_comments->toPlainText();
 
-    if(!conn.openDB()) {
+    if(!log->openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
                               tr("Cannot Log into Password Manager,"
                                  "\n since accounts.db has been deleted or moved."),
@@ -113,7 +100,7 @@ void Manager::on_pushButton_update_clicked()
     if(qry.exec())
     {
         QMessageBox::information(this,tr("Updated"),tr("updated"));
-        conn.closeDB();
+        log->closeDB();
         on_pushButton_load_clicked();
     }
     else {
@@ -125,14 +112,12 @@ void Manager::on_pushButton_update_clicked()
 
 void Manager::on_pushButton_delete_clicked()
 {
-    Login conn;
-    //id = ui->lineEdit_id->text();
     acc = ui->lineEdit_acc->text();
     user = ui->lineEdit_user->text();
     pass = ui->lineEdit_pass->text();
     comment = ui->textEdit_comments->toPlainText();
 
-    if(!conn.openDB()) {
+    if(!log->openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
                               tr("Cannot Log into Password Manager,"
                                  "\n since accounts.db has been deleted or moved."),
@@ -147,7 +132,7 @@ void Manager::on_pushButton_delete_clicked()
     if(qry.exec())
     {
         QMessageBox::information(this,tr("Deleted"),tr("deleted"));
-        conn.closeDB();
+        log->closeDB();
         on_pushButton_load_clicked();
     }
     else {
@@ -159,11 +144,10 @@ void Manager::on_pushButton_delete_clicked()
 
 void Manager::on_tableView_activated(const QModelIndex &index)
 {
-    Login conn;
     QString val = ui->tableView->model()->
             index(index.row(),0,QModelIndex()).data().toString();   // get the account
 
-    if(!conn.openDB()) {
+    if(!log->openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
                               tr("Cannot Log into Password Manager,"
                                  "\n since accounts.db has been deleted or moved."),
@@ -171,7 +155,6 @@ void Manager::on_tableView_activated(const QModelIndex &index)
         QCoreApplication::quit();
     }
 
-    conn.openDB();
     QSqlQuery qry;
     qry.exec("pragma key='"+log->password+"';");
     qry.prepare("select * from accounts where account='"+val+"';");
@@ -185,7 +168,7 @@ void Manager::on_tableView_activated(const QModelIndex &index)
            ui->lineEdit_pass->setText(qry.value(3).toString());
            ui->textEdit_comments->setText(qry.value(4).toString());
         }
-        conn.closeDB();
+        log->closeDB();
     } else {
         qDebug() << qry.lastError().text();
         QMessageBox::critical(this,tr("error::"),qry.lastError().text());
@@ -199,11 +182,17 @@ void Manager::on_actionexit_triggered()
 
 void Manager::on_pushButton_load_clicked()
 {
-    Login conn;
     QSqlQueryModel * model = new QSqlQueryModel;
 
-    conn.openDB();
-    QSqlQuery * qry = new QSqlQuery(conn.db);
+    if(!log->openDB()) {
+        QMessageBox::critical(this,tr("Missing Accounts Database"),
+                              tr("Cannot Log into Password Manager,"
+                                 "\n since accounts.db has been deleted or moved."),
+                              QMessageBox::Ok);
+        QCoreApplication::quit();
+    }
+
+    QSqlQuery * qry = new QSqlQuery(log->db);
     qry->exec("pragma key='"+log->password+"';");
     qry->prepare("select account,username,password,comment from accounts");
 
@@ -213,7 +202,7 @@ void Manager::on_pushButton_load_clicked()
         ui->tableView->setModel(model);
         ui->tableView->resizeColumnsToContents();
 
-        conn.closeDB();
+        log->closeDB();
     } else {
         qDebug() << qry->lastError().text();
         QMessageBox::critical(this,tr("No Records Found"),
