@@ -19,9 +19,11 @@ class Login : public QDialog
     Q_OBJECT
 public:
     QSqlDatabase db;
+    QString password;
+
     bool openDB() {
         const QString path = QStandardPaths::locate(QStandardPaths::HomeLocation, "accounts.db");
-        db = QSqlDatabase::addDatabase("QSQLITE");
+        db = QSqlDatabase::addDatabase("QSQLCIPHER");
         db.setDatabaseName(path);
 
         if(!db.open())
@@ -29,8 +31,10 @@ public:
 
         return true;
     }
+
     void closeDB() {
         db.close();
+        db.removeDatabase(QSqlDatabase::defaultConnection);
     }
 
 public:

@@ -55,31 +55,7 @@ QGroupBox::title {
       <item>
        <layout class="QVBoxLayout" name="lines">
         <item>
-         <layout class="QHBoxLayout" name="id">
-          <item>
-           <widget class="QLabel" name="label_id">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>ID:              </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_id">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="echoMode">
-             <enum>QLineEdit::Normal</enum>
-            </property>
-            <property name="readOnly">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <layout class="QHBoxLayout" name="id"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="acc">
@@ -194,7 +170,7 @@ QPushButton:pressed {
 }</string>
           </property>
           <property name="text">
-           <string>Save</string>
+           <string>Add</string>
           </property>
          </widget>
         </item>
@@ -257,11 +233,39 @@ QPushButton:pressed {
     <layout class="QVBoxLayout" name="accounts_table">
      <item>
       <widget class="QTableView" name="tableView">
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
        <property name="styleSheet">
-        <string notr="true"> QTableView table {
-  selection-background-color: rgb(52, 101, 164);
+        <string notr="true"> QTableView {
+alternate-background-color: lightblue;
+}
+
+ QTableView::item:focus {
+ selection-background-color: blue; 
 }</string>
        </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
+       <property name="gridStyle">
+        <enum>Qt::SolidLine</enum>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>true</bool>
+       </attribute>
       </widget>
      </item>
      <item>
@@ -300,7 +304,7 @@ QPushButton:pressed {
      <x>0</x>
      <y>0</y>
      <width>750</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

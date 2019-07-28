@@ -22,31 +22,33 @@ void Login::on_pushButton_exit_clicked()
 
 void Login::on_pushButton_login_clicked()
 {
-     QString password = ui->lineEdit_password->text();
+    password = ui->lineEdit_password->text();
 
-     if(!openDB()) {
-         QMessageBox::critical(this,tr("Missing Accounts Database"),
-                               tr("Cannot Log into Password Manager, since accounts.db has been deleted"),
-                               QMessageBox::Ok);
-         QCoreApplication::quit();
-     }
+    // test the connection
+    if(!openDB()){
+        QMessageBox::critical(this,tr("Missing Accounts Database"),
+                                       tr("Cannot Log into Password Manager, since accounts.db has been deleted"),
+                                       QMessageBox::Ok);
+        QCoreApplication::quit();
+    }
+    openDB();
 
-     openDB();  // open the database
-     QSqlQuery qry(db);
-     qry.prepare("select * from accounts where id='1' and username='admin' and password='"+password+"';");
+    // log into the database
+    QSqlQuery qry(db);
+    qry.exec("pragma key='"+password+"';");
 
-     if(qry.exec()) {
-        int count=0;
-        while (qry.next()) count++;
-        if(count==1) {
-            qDebug() << "success";
-            closeDB();
-            this->close();
-        } else {
-            QMessageBox::critical(this,tr("Incorrect Password"),
-                                  tr("Incorrect password entered. Try again."),
-                                  QMessageBox::Ok);
-            return;
-        }
-     }
+    // test the connection
+    qry.prepare("select * from accounts");
+    if(qry.exec()) {
+        qDebug() << "Successfully logged into accounts.db";
+        db.close();
+        this->close(); // close the dialog
+    } else {
+        qDebug() << "Failed to log into accounts.db";
+        db.close();
+        QMessageBox::critical(this,tr("Incorrect Password"),
+                                         tr("Incorrect password entered. Try again."),
+                                         QMessageBox::Ok);
+        return;
+    }
 }

@@ -1,19 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'manager.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.13.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.5)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include <memory>
-#include "../CODE/PasswordManager/PasswordManager/manager.h"
+#include "../PasswordManager/manager.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'manager.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.13.0. It"
+#error "This file was generated using the moc from 5.9.5. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Manager_t {
-    QByteArrayData data[10];
-    char stringdata0[186];
+    QByteArrayData data[9];
+    char stringdata0[174];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,17 +37,16 @@ QT_MOC_LITERAL(2, 35, 0), // ""
 QT_MOC_LITERAL(3, 36, 28), // "on_pushButton_update_clicked"
 QT_MOC_LITERAL(4, 65, 28), // "on_pushButton_delete_clicked"
 QT_MOC_LITERAL(5, 94, 22), // "on_tableView_activated"
-QT_MOC_LITERAL(6, 117, 11), // "QModelIndex"
-QT_MOC_LITERAL(7, 129, 5), // "index"
-QT_MOC_LITERAL(8, 135, 23), // "on_actionexit_triggered"
-QT_MOC_LITERAL(9, 159, 26) // "on_pushButton_load_clicked"
+QT_MOC_LITERAL(6, 117, 5), // "index"
+QT_MOC_LITERAL(7, 123, 23), // "on_actionexit_triggered"
+QT_MOC_LITERAL(8, 147, 26) // "on_pushButton_load_clicked"
 
     },
     "Manager\0on_pushButton_save_clicked\0\0"
     "on_pushButton_update_clicked\0"
     "on_pushButton_delete_clicked\0"
-    "on_tableView_activated\0QModelIndex\0"
-    "index\0on_actionexit_triggered\0"
+    "on_tableView_activated\0index\0"
+    "on_actionexit_triggered\0"
     "on_pushButton_load_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -56,7 +54,7 @@ QT_MOC_LITERAL(9, 159, 26) // "on_pushButton_load_clicked"
 static const uint qt_meta_data_Manager[] = {
 
  // content:
-       8,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        6,   14, // methods
@@ -71,14 +69,14 @@ static const uint qt_meta_data_Manager[] = {
        3,    0,   45,    2, 0x08 /* Private */,
        4,    0,   46,    2, 0x08 /* Private */,
        5,    1,   47,    2, 0x08 /* Private */,
-       8,    0,   50,    2, 0x08 /* Private */,
-       9,    0,   51,    2, 0x08 /* Private */,
+       7,    0,   50,    2, 0x08 /* Private */,
+       8,    0,   51,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, QMetaType::QModelIndex,    6,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -88,7 +86,7 @@ static const uint qt_meta_data_Manager[] = {
 void Manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<Manager *>(_o);
+        Manager *_t = static_cast<Manager *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_pushButton_save_clicked(); break;
@@ -102,14 +100,10 @@ void Manager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject Manager::staticMetaObject = { {
-    &QMainWindow::staticMetaObject,
-    qt_meta_stringdata_Manager.data,
-    qt_meta_data_Manager,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+const QMetaObject Manager::staticMetaObject = {
+    { &QMainWindow::staticMetaObject, qt_meta_stringdata_Manager.data,
+      qt_meta_data_Manager,  qt_static_metacall, nullptr, nullptr}
+};
 
 
 const QMetaObject *Manager::metaObject() const

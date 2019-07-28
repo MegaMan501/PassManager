@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'register.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.0
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,10 +10,13 @@
 #define UI_REGISTER_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -41,16 +44,16 @@ public:
     void setupUi(QDialog *Register)
     {
         if (Register->objectName().isEmpty())
-            Register->setObjectName(QString::fromUtf8("Register"));
+            Register->setObjectName(QStringLiteral("Register"));
         Register->resize(480, 320);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Register->sizePolicy().hasHeightForWidth());
         Register->setSizePolicy(sizePolicy);
-        Register->setStyleSheet(QString::fromUtf8(""));
+        Register->setStyleSheet(QStringLiteral(""));
         label_title = new QLabel(Register);
-        label_title->setObjectName(QString::fromUtf8("label_title"));
+        label_title->setObjectName(QStringLiteral("label_title"));
         label_title->setGeometry(QRect(230, 20, 241, 41));
         QFont font;
         font.setPointSize(25);
@@ -62,9 +65,9 @@ public:
         label_title->setFont(font);
         label_title->setFocusPolicy(Qt::StrongFocus);
         groupBox = new QGroupBox(Register);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setGeometry(QRect(20, 80, 441, 201));
-        groupBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
+        groupBox->setStyleSheet(QLatin1String("QGroupBox {\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);\n"
 "    border: 2px solid gray;\n"
@@ -80,14 +83,14 @@ public:
 "                                      stop: 0 #FFOECE, stop: 1 #FFFFFF);\n"
 "}"));
         pushButton_register = new QPushButton(groupBox);
-        pushButton_register->setObjectName(QString::fromUtf8("pushButton_register"));
+        pushButton_register->setObjectName(QStringLiteral("pushButton_register"));
         pushButton_register->setGeometry(QRect(80, 150, 112, 30));
         QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(pushButton_register->sizePolicy().hasHeightForWidth());
         pushButton_register->setSizePolicy(sizePolicy1);
-        pushButton_register->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        pushButton_register->setStyleSheet(QLatin1String("QPushButton {\n"
 "    background-color:rgb(114, 159, 207);\n"
 "    border-style: outset;\n"
 "    border-radius: 10px;\n"
@@ -100,11 +103,11 @@ public:
 "    background-color: rgb(32, 74, 135);\n"
 "}"));
         pushButton_exit = new QPushButton(groupBox);
-        pushButton_exit->setObjectName(QString::fromUtf8("pushButton_exit"));
+        pushButton_exit->setObjectName(QStringLiteral("pushButton_exit"));
         pushButton_exit->setGeometry(QRect(210, 150, 112, 30));
         sizePolicy1.setHeightForWidth(pushButton_exit->sizePolicy().hasHeightForWidth());
         pushButton_exit->setSizePolicy(sizePolicy1);
-        pushButton_exit->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        pushButton_exit->setStyleSheet(QLatin1String("QPushButton {\n"
 "    background-color: rgb(115, 210, 22);\n"
 "    border-style: outset;\n"
 "    border-radius: 10px;\n"
@@ -117,20 +120,20 @@ public:
 "    background-color: rgb(138, 226, 52);\n"
 "}"));
         layoutWidget = new QWidget(groupBox);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(30, 50, 371, 70));
         verticalLayout = new QVBoxLayout(layoutWidget);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label_passord = new QLabel(layoutWidget);
-        label_passord->setObjectName(QString::fromUtf8("label_passord"));
+        label_passord->setObjectName(QStringLiteral("label_passord"));
 
         horizontalLayout->addWidget(label_passord);
 
         lineEdit_password = new QLineEdit(layoutWidget);
-        lineEdit_password->setObjectName(QString::fromUtf8("lineEdit_password"));
+        lineEdit_password->setObjectName(QStringLiteral("lineEdit_password"));
         lineEdit_password->setEchoMode(QLineEdit::Password);
 
         horizontalLayout->addWidget(lineEdit_password);
@@ -139,14 +142,14 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         label_confirm = new QLabel(layoutWidget);
-        label_confirm->setObjectName(QString::fromUtf8("label_confirm"));
+        label_confirm->setObjectName(QStringLiteral("label_confirm"));
 
         horizontalLayout_2->addWidget(label_confirm);
 
         lineEdit_confirm = new QLineEdit(layoutWidget);
-        lineEdit_confirm->setObjectName(QString::fromUtf8("lineEdit_confirm"));
+        lineEdit_confirm->setObjectName(QStringLiteral("lineEdit_confirm"));
         lineEdit_confirm->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_2->addWidget(lineEdit_confirm);
@@ -154,6 +157,10 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_2);
 
+        QWidget::setTabOrder(lineEdit_password, lineEdit_confirm);
+        QWidget::setTabOrder(lineEdit_confirm, pushButton_register);
+        QWidget::setTabOrder(pushButton_register, pushButton_exit);
+        QWidget::setTabOrder(pushButton_exit, label_title);
 
         retranslateUi(Register);
 
@@ -162,13 +169,13 @@ public:
 
     void retranslateUi(QDialog *Register)
     {
-        Register->setWindowTitle(QCoreApplication::translate("Register", "Dialog", nullptr));
-        label_title->setText(QCoreApplication::translate("Register", "PassManager", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("Register", "Set Master Password: ", nullptr));
-        pushButton_register->setText(QCoreApplication::translate("Register", "Register", nullptr));
-        pushButton_exit->setText(QCoreApplication::translate("Register", "Exit", nullptr));
-        label_passord->setText(QCoreApplication::translate("Register", "Password:                ", nullptr));
-        label_confirm->setText(QCoreApplication::translate("Register", "Confirm Password: ", nullptr));
+        Register->setWindowTitle(QApplication::translate("Register", "Dialog", Q_NULLPTR));
+        label_title->setText(QApplication::translate("Register", "PassManager", Q_NULLPTR));
+        groupBox->setTitle(QApplication::translate("Register", "Set Master Password: ", Q_NULLPTR));
+        pushButton_register->setText(QApplication::translate("Register", "Register", Q_NULLPTR));
+        pushButton_exit->setText(QApplication::translate("Register", "Exit", Q_NULLPTR));
+        label_passord->setText(QApplication::translate("Register", "Password:                ", Q_NULLPTR));
+        label_confirm->setText(QApplication::translate("Register", "Confirm Password: ", Q_NULLPTR));
     } // retranslateUi
 
 };

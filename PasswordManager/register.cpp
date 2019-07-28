@@ -40,8 +40,7 @@ void Register::on_pushButton_register_clicked()
     if((hasLower && hasUpper && hasDigit && hasSymbo) && password.length() >= 8 && password == confirm)
     {
         // create the password manager database
-        db = QSqlDatabase::addDatabase("QSQLITE");
-        //db = QSqlDatabase::addDatabase("QSQLCIPHER", "db");
+        db = QSqlDatabase::addDatabase("QSQLCIPHER");
         db.setPassword(password); // lock the database with password
         db.setDatabaseName(path);
 
@@ -56,15 +55,14 @@ void Register::on_pushButton_register_clicked()
 
         // create the accounts table
         QSqlQuery qry(db);
-        //qry.exec("PRAGMA key='"+password+"';"); // not used
-        qry.exec("create table accounts (id integer primary key, "
-                 "account varchar(30), username varchar(30), password varchar(30), comment varchar(50));");
-        qry.exec("insert into accounts (account, username, password, comment) "
-                 "values('passManager','admin','"+password+"','this is the master password for the database');");
+        qry.exec("PRAGMA key='"+password+"';"); // this encrypts the database with user specified password
+        qry.exec("CREATE TABLE accounts (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, "
+                 "account varchar(30) UNIQUE, username varchar(30), password varchar(30), comment varchar(50));");
 
         // close the db and the dialog
         db.close();
         this->close();
+
     } else { // display warning if password was not correct
         if(!hasUpper) warning+="Password is missing at least one uppercase character.\n";
         if(!hasLower) warning+="Password is missing at least one lowercase character.\n";

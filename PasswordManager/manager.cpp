@@ -53,21 +53,11 @@ Manager::~Manager()
 void Manager::on_pushButton_save_clicked()
 {
     Login conn;
-    id = ui->lineEdit_id->text();
+    //id = ui->lineEdit_id->text();
     acc = ui->lineEdit_acc->text();
     user = ui->lineEdit_user->text();
     pass = ui->lineEdit_pass->text();
     comment = ui->textEdit_comments->toPlainText();
-
-    if(id == "") {
-        QMessageBox::warning(this,tr("Invalid ID"),tr("Not ID entered."));
-        return;
-    }
-
-    if(id.toInt() == 1) {
-        QMessageBox::warning(this,tr("Invalid ID"),tr("Cannot use 1 as an ID."));
-        return;
-    }
 
     if(!conn.openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
@@ -77,37 +67,33 @@ void Manager::on_pushButton_save_clicked()
         QCoreApplication::quit();
     }
 
+    // prepare insert query
     QSqlQuery qry;
-    qry.prepare("insert into accounts (id,account,username,password,comment)"
-                " values('"+id+"','"+acc+"','"+user+"','"+pass+"','"+comment+"');");
+    qry.exec("pragma key='"+log->password+"';");
+    qry.prepare("insert into accounts (account,username,password,comment)"
+                " values('"+acc+"','"+user+"','"+pass+"','"+comment+"');");
 
     if(qry.exec())
     {
         QMessageBox::information(this,tr("Save"),tr("saved"));
-        on_pushButton_load_clicked(); //conn.closeDB();
+        conn.closeDB();
+        on_pushButton_load_clicked();
     }
     else {
-        QMessageBox::critical(this,tr("error::"),qry.lastError().text());
+        QMessageBox::critical(this,tr("Save Failed"),tr("Please make sure the data you have entered is correct."
+                                                        "Duplicate accounts are not allowed."));
+        qDebug() << qry.lastError().text();
     }
 }
 
 void Manager::on_pushButton_update_clicked()
 {
     Login conn;
-    id = ui->lineEdit_id->text();
+    //id = ui->lineEdit_id->text();
     acc = ui->lineEdit_acc->text();
     user = ui->lineEdit_user->text();
     pass = ui->lineEdit_pass->text();
     comment = ui->textEdit_comments->toPlainText();
-
-    if(id.toInt() == 1) {
-        QMessageBox::warning(this,tr("Invalid ID"),tr("Cannot use 1 as an ID"));
-        return;
-    }
-    if(id.isEmpty()) {
-        QMessageBox::warning(this,tr("No ID Povided"), tr("Try again."));
-        return;
-    }
 
     if(!conn.openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
@@ -117,38 +103,34 @@ void Manager::on_pushButton_update_clicked()
         QCoreApplication::quit();
     }
 
+    // prepare update query
     QSqlQuery qry;
-    qry.prepare("update accounts set id='"+id+"',account='"+acc+"'"
-                   ", username='"+user+"',password='"+pass+"',comment='"+comment+"' where id='"+id+"';");
+    qry.exec("pragma key='"+log->password+"';");
+    qry.prepare("update accounts set account='"+acc+"'"
+                   ", username='"+user+"',password='"+pass+"',comment='"+comment+"' where account='"+acc+"';");
 
+    // update
     if(qry.exec())
     {
         QMessageBox::information(this,tr("Updated"),tr("updated"));
-        on_pushButton_load_clicked(); // conn.closeDB();
+        conn.closeDB();
+        on_pushButton_load_clicked();
     }
     else {
-        QMessageBox::critical(this,tr("error::"),qry.lastError().text());
+        QMessageBox::critical(this,tr("Update Failed"),tr("Please make sure the data you have entered is correct.\n"
+                                                          "Duplicate accounts are not allowed."));
+        qDebug() << qry.lastError().text();
     }
 }
 
 void Manager::on_pushButton_delete_clicked()
 {
     Login conn;
-    id = ui->lineEdit_id->text();
+    //id = ui->lineEdit_id->text();
     acc = ui->lineEdit_acc->text();
     user = ui->lineEdit_user->text();
     pass = ui->lineEdit_pass->text();
     comment = ui->textEdit_comments->toPlainText();
-
-    if(id.isEmpty()) {
-        QMessageBox::warning(this,tr("No ID Povided"), tr("Try again."));
-        return;
-    }
-
-    if(id.toInt() == 1) {
-        QMessageBox::warning(this,tr("Invalid ID"),tr("Cannot use 1 as an ID"));
-        return;
-    }
 
     if(!conn.openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
@@ -159,22 +141,27 @@ void Manager::on_pushButton_delete_clicked()
     }
 
     QSqlQuery qry;
-    qry.prepare("delete from accounts where id='"+id+"';");
+    qry.exec("pragma key='"+log->password+"';");
+    qry.prepare("delete from accounts where account='"+acc+"';");
 
     if(qry.exec())
     {
         QMessageBox::information(this,tr("Deleted"),tr("deleted"));
-        on_pushButton_load_clicked(); //conn.closeDB();
+        conn.closeDB();
+        on_pushButton_load_clicked();
     }
     else {
-        QMessageBox::critical(this,tr("error::"),qry.lastError().text());
+        QMessageBox::critical(this,tr("Delete Failed"),tr("Please make sure the data you have entered is correct.\n"
+                                                          "This account does not exist."));
+        qDebug() << qry.lastError().text();
     }
 }
 
 void Manager::on_tableView_activated(const QModelIndex &index)
 {
     Login conn;
-    QString val=ui->tableView->model()->data(index).toString();
+    QString val = ui->tableView->model()->
+            index(index.row(),0,QModelIndex()).data().toString();   // get the account
 
     if(!conn.openDB()) {
         QMessageBox::critical(this,tr("Missing Accounts Database"),
@@ -186,10 +173,13 @@ void Manager::on_tableView_activated(const QModelIndex &index)
 
     conn.openDB();
     QSqlQuery qry;
-    qry.prepare("select * from accounts where id='"+val+"' or account='"+val+"' or username='"+val+"' or password='"+val+"' or comment='"+val+"' ");
+    qry.exec("pragma key='"+log->password+"';");
+    qry.prepare("select * from accounts where account='"+val+"';");
+
+
     if(qry.exec()) {
         while (qry.next()) {
-           ui->lineEdit_id->setText(qry.value(0).toString());
+          // skip the id
            ui->lineEdit_acc->setText(qry.value(1).toString());
            ui->lineEdit_user->setText(qry.value(2).toString());
            ui->lineEdit_pass->setText(qry.value(3).toString());
@@ -197,6 +187,7 @@ void Manager::on_tableView_activated(const QModelIndex &index)
         }
         conn.closeDB();
     } else {
+        qDebug() << qry.lastError().text();
         QMessageBox::critical(this,tr("error::"),qry.lastError().text());
     }
 }
@@ -213,15 +204,24 @@ void Manager::on_pushButton_load_clicked()
 
     conn.openDB();
     QSqlQuery * qry = new QSqlQuery(conn.db);
+    qry->exec("pragma key='"+log->password+"';");
+    qry->prepare("select account,username,password,comment from accounts");
 
-    qry->prepare("select id,account,username,password,comment from accounts LIMIT 5000 OFFSET 1");
-    qry->exec();
-    model->setQuery(*qry);
-    ui->tableView->setModel(model);
+    // load the records from the database
+    if(qry->exec()) {
+        model->setQuery(*qry);
+        ui->tableView->setModel(model);
+        ui->tableView->resizeColumnsToContents();
 
-    qDebug() << "Number of Rows in Table:";
-    qDebug() << (model->rowCount());
+        conn.closeDB();
+    } else {
+        qDebug() << qry->lastError().text();
+        QMessageBox::critical(this,tr("No Records Found"),
+                              tr("There are no records in the database.\n"
+                                 "Please save an account into the manager "
+                                 "before loading the accounts."),
+                              QMessageBox::Ok);
+        return;
+    }
 
-    items=model->rowCount();
-    conn.closeDB();
 }

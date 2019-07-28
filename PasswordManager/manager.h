@@ -22,7 +22,7 @@ class Manager : public QMainWindow
 
 public:
     QString id,acc,user,pass,comment;
-    int items;
+    //int items;
     explicit Manager(QWidget *parent = nullptr);
     ~Manager();
 

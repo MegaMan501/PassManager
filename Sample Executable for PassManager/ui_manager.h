@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'manager.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.0
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -40,8 +41,6 @@ public:
     QHBoxLayout *all;
     QVBoxLayout *lines;
     QHBoxLayout *id;
-    QLabel *label_id;
-    QLineEdit *lineEdit_id;
     QHBoxLayout *acc;
     QLabel *label_acc;
     QLineEdit *lineEdit_acc;
@@ -71,17 +70,17 @@ public:
     void setupUi(QMainWindow *Manager)
     {
         if (Manager->objectName().isEmpty())
-            Manager->setObjectName(QString::fromUtf8("Manager"));
+            Manager->setObjectName(QStringLiteral("Manager"));
         Manager->setEnabled(true);
         Manager->resize(750, 650);
         actionexit = new QAction(Manager);
-        actionexit->setObjectName(QString::fromUtf8("actionexit"));
+        actionexit->setObjectName(QStringLiteral("actionexit"));
         centralWidget = new QWidget(Manager);
-        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
         accounts_input = new QGroupBox(centralWidget);
-        accounts_input->setObjectName(QString::fromUtf8("accounts_input"));
+        accounts_input->setObjectName(QStringLiteral("accounts_input"));
         accounts_input->setGeometry(QRect(20, 10, 701, 201));
-        accounts_input->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
+        accounts_input->setStyleSheet(QLatin1String("QGroupBox {\n"
 "    border: 2px solid gray;\n"
 "    border-radius: 5px;\n"
 "    margin-top: 1ex; /* leave space at the top for the title */\n"
@@ -93,46 +92,32 @@ public:
 "    padding: 0 3px;\n"
 "}"));
         layoutWidget = new QWidget(accounts_input);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(30, 40, 631, 146));
         all = new QHBoxLayout(layoutWidget);
         all->setSpacing(6);
         all->setContentsMargins(11, 11, 11, 11);
-        all->setObjectName(QString::fromUtf8("all"));
+        all->setObjectName(QStringLiteral("all"));
         all->setContentsMargins(0, 0, 0, 0);
         lines = new QVBoxLayout();
         lines->setSpacing(6);
-        lines->setObjectName(QString::fromUtf8("lines"));
+        lines->setObjectName(QStringLiteral("lines"));
         id = new QHBoxLayout();
         id->setSpacing(6);
-        id->setObjectName(QString::fromUtf8("id"));
-        label_id = new QLabel(layoutWidget);
-        label_id->setObjectName(QString::fromUtf8("label_id"));
-        label_id->setEnabled(true);
-
-        id->addWidget(label_id);
-
-        lineEdit_id = new QLineEdit(layoutWidget);
-        lineEdit_id->setObjectName(QString::fromUtf8("lineEdit_id"));
-        lineEdit_id->setEnabled(true);
-        lineEdit_id->setEchoMode(QLineEdit::Normal);
-        lineEdit_id->setReadOnly(false);
-
-        id->addWidget(lineEdit_id);
-
+        id->setObjectName(QStringLiteral("id"));
 
         lines->addLayout(id);
 
         acc = new QHBoxLayout();
         acc->setSpacing(6);
-        acc->setObjectName(QString::fromUtf8("acc"));
+        acc->setObjectName(QStringLiteral("acc"));
         label_acc = new QLabel(layoutWidget);
-        label_acc->setObjectName(QString::fromUtf8("label_acc"));
+        label_acc->setObjectName(QStringLiteral("label_acc"));
 
         acc->addWidget(label_acc);
 
         lineEdit_acc = new QLineEdit(layoutWidget);
-        lineEdit_acc->setObjectName(QString::fromUtf8("lineEdit_acc"));
+        lineEdit_acc->setObjectName(QStringLiteral("lineEdit_acc"));
 
         acc->addWidget(lineEdit_acc);
 
@@ -141,14 +126,14 @@ public:
 
         user = new QHBoxLayout();
         user->setSpacing(6);
-        user->setObjectName(QString::fromUtf8("user"));
+        user->setObjectName(QStringLiteral("user"));
         label_user = new QLabel(layoutWidget);
-        label_user->setObjectName(QString::fromUtf8("label_user"));
+        label_user->setObjectName(QStringLiteral("label_user"));
 
         user->addWidget(label_user);
 
         lineEdit_user = new QLineEdit(layoutWidget);
-        lineEdit_user->setObjectName(QString::fromUtf8("lineEdit_user"));
+        lineEdit_user->setObjectName(QStringLiteral("lineEdit_user"));
 
         user->addWidget(lineEdit_user);
 
@@ -157,14 +142,14 @@ public:
 
         pass = new QHBoxLayout();
         pass->setSpacing(6);
-        pass->setObjectName(QString::fromUtf8("pass"));
+        pass->setObjectName(QStringLiteral("pass"));
         label_pas = new QLabel(layoutWidget);
-        label_pas->setObjectName(QString::fromUtf8("label_pas"));
+        label_pas->setObjectName(QStringLiteral("label_pas"));
 
         pass->addWidget(label_pas);
 
         lineEdit_pass = new QLineEdit(layoutWidget);
-        lineEdit_pass->setObjectName(QString::fromUtf8("lineEdit_pass"));
+        lineEdit_pass->setObjectName(QStringLiteral("lineEdit_pass"));
         lineEdit_pass->setEchoMode(QLineEdit::Password);
 
         pass->addWidget(lineEdit_pass);
@@ -181,14 +166,14 @@ public:
 
         texts = new QVBoxLayout();
         texts->setSpacing(6);
-        texts->setObjectName(QString::fromUtf8("texts"));
+        texts->setObjectName(QStringLiteral("texts"));
         label_comments = new QLabel(layoutWidget);
-        label_comments->setObjectName(QString::fromUtf8("label_comments"));
+        label_comments->setObjectName(QStringLiteral("label_comments"));
 
         texts->addWidget(label_comments);
 
         textEdit_comments = new QTextEdit(layoutWidget);
-        textEdit_comments->setObjectName(QString::fromUtf8("textEdit_comments"));
+        textEdit_comments->setObjectName(QStringLiteral("textEdit_comments"));
 
         texts->addWidget(textEdit_comments);
 
@@ -201,10 +186,10 @@ public:
 
         buttons = new QVBoxLayout();
         buttons->setSpacing(6);
-        buttons->setObjectName(QString::fromUtf8("buttons"));
+        buttons->setObjectName(QStringLiteral("buttons"));
         pushButton_save = new QPushButton(layoutWidget);
-        pushButton_save->setObjectName(QString::fromUtf8("pushButton_save"));
-        pushButton_save->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        pushButton_save->setObjectName(QStringLiteral("pushButton_save"));
+        pushButton_save->setStyleSheet(QLatin1String("QPushButton {\n"
 "    background-color:rgb(114, 159, 207);\n"
 "    border-style: outset;\n"
 "    border-radius: 10px;\n"
@@ -220,8 +205,8 @@ public:
         buttons->addWidget(pushButton_save);
 
         pushButton_update = new QPushButton(layoutWidget);
-        pushButton_update->setObjectName(QString::fromUtf8("pushButton_update"));
-        pushButton_update->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        pushButton_update->setObjectName(QStringLiteral("pushButton_update"));
+        pushButton_update->setStyleSheet(QLatin1String("QPushButton {\n"
 "    background-color: rgb(115, 210, 22);\n"
 "    border-style: outset;\n"
 "    border-radius: 10px;\n"
@@ -237,8 +222,8 @@ public:
         buttons->addWidget(pushButton_update);
 
         pushButton_delete = new QPushButton(layoutWidget);
-        pushButton_delete->setObjectName(QString::fromUtf8("pushButton_delete"));
-        pushButton_delete->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        pushButton_delete->setObjectName(QStringLiteral("pushButton_delete"));
+        pushButton_delete->setStyleSheet(QLatin1String("QPushButton {\n"
 "    background-color: rgb(173, 127, 168);\n"
 "    border-style: outset;\n"
 "    border-radius: 10px;\n"
@@ -257,29 +242,41 @@ public:
         all->addLayout(buttons);
 
         layoutWidget1 = new QWidget(centralWidget);
-        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
         layoutWidget1->setGeometry(QRect(30, 240, 701, 351));
         accounts_table = new QVBoxLayout(layoutWidget1);
         accounts_table->setSpacing(6);
         accounts_table->setContentsMargins(11, 11, 11, 11);
-        accounts_table->setObjectName(QString::fromUtf8("accounts_table"));
+        accounts_table->setObjectName(QStringLiteral("accounts_table"));
         accounts_table->setContentsMargins(0, 0, 0, 0);
         tableView = new QTableView(layoutWidget1);
-        tableView->setObjectName(QString::fromUtf8("tableView"));
-        tableView->setStyleSheet(QString::fromUtf8(" QTableView table {\n"
-"  selection-background-color: rgb(52, 101, 164);\n"
+        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setAutoFillBackground(false);
+        tableView->setStyleSheet(QLatin1String(" QTableView {\n"
+"alternate-background-color: lightblue;\n"
+"}\n"
+"\n"
+" QTableView::item:focus {\n"
+" selection-background-color: blue; \n"
 "}"));
+        tableView->setFrameShape(QFrame::NoFrame);
+        tableView->setFrameShadow(QFrame::Plain);
+        tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+        tableView->setAlternatingRowColors(true);
+        tableView->setShowGrid(true);
+        tableView->setGridStyle(Qt::SolidLine);
+        tableView->horizontalHeader()->setVisible(true);
 
         accounts_table->addWidget(tableView);
 
         pushButton_load = new QPushButton(layoutWidget1);
-        pushButton_load->setObjectName(QString::fromUtf8("pushButton_load"));
+        pushButton_load->setObjectName(QStringLiteral("pushButton_load"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(pushButton_load->sizePolicy().hasHeightForWidth());
         pushButton_load->setSizePolicy(sizePolicy);
-        pushButton_load->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        pushButton_load->setStyleSheet(QLatin1String("QPushButton {\n"
 "    background-color: rgb(206, 92, 0);\n"
 "    border-style: outset;\n"
 "    border-radius: 10px;\n"
@@ -296,13 +293,13 @@ public:
 
         Manager->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Manager);
-        menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 750, 26));
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 750, 22));
         menuFile = new QMenu(menuBar);
-        menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuFile->setObjectName(QStringLiteral("menuFile"));
         Manager->setMenuBar(menuBar);
         statusBar = new QStatusBar(Manager);
-        statusBar->setObjectName(QString::fromUtf8("statusBar"));
+        statusBar->setObjectName(QStringLiteral("statusBar"));
         Manager->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());
@@ -315,19 +312,18 @@ public:
 
     void retranslateUi(QMainWindow *Manager)
     {
-        Manager->setWindowTitle(QCoreApplication::translate("Manager", "PassManager", nullptr));
-        actionexit->setText(QCoreApplication::translate("Manager", "exit", nullptr));
-        accounts_input->setTitle(QCoreApplication::translate("Manager", "Add, Update, or Delete an Account: ", nullptr));
-        label_id->setText(QCoreApplication::translate("Manager", "ID:              ", nullptr));
-        label_acc->setText(QCoreApplication::translate("Manager", "Account:   ", nullptr));
-        label_user->setText(QCoreApplication::translate("Manager", "Username:", nullptr));
-        label_pas->setText(QCoreApplication::translate("Manager", "Password:", nullptr));
-        label_comments->setText(QCoreApplication::translate("Manager", "Comments:", nullptr));
-        pushButton_save->setText(QCoreApplication::translate("Manager", "Save", nullptr));
-        pushButton_update->setText(QCoreApplication::translate("Manager", "Update", nullptr));
-        pushButton_delete->setText(QCoreApplication::translate("Manager", "Delete", nullptr));
-        pushButton_load->setText(QCoreApplication::translate("Manager", "Load Accounts", nullptr));
-        menuFile->setTitle(QCoreApplication::translate("Manager", "File", nullptr));
+        Manager->setWindowTitle(QApplication::translate("Manager", "PassManager", Q_NULLPTR));
+        actionexit->setText(QApplication::translate("Manager", "exit", Q_NULLPTR));
+        accounts_input->setTitle(QApplication::translate("Manager", "Add, Update, or Delete an Account: ", Q_NULLPTR));
+        label_acc->setText(QApplication::translate("Manager", "Account:   ", Q_NULLPTR));
+        label_user->setText(QApplication::translate("Manager", "Username:", Q_NULLPTR));
+        label_pas->setText(QApplication::translate("Manager", "Password:", Q_NULLPTR));
+        label_comments->setText(QApplication::translate("Manager", "Comments:", Q_NULLPTR));
+        pushButton_save->setText(QApplication::translate("Manager", "Add", Q_NULLPTR));
+        pushButton_update->setText(QApplication::translate("Manager", "Update", Q_NULLPTR));
+        pushButton_delete->setText(QApplication::translate("Manager", "Delete", Q_NULLPTR));
+        pushButton_load->setText(QApplication::translate("Manager", "Load Accounts", Q_NULLPTR));
+        menuFile->setTitle(QApplication::translate("Manager", "File", Q_NULLPTR));
     } // retranslateUi
 
 };
