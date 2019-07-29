@@ -54,7 +54,7 @@ Subsequent Runs:
 ![manager](https://github.com/MegaMan501/PassManager/blob/master/manager.png)
 
 Verification: 
-- Here is a `hexdump` of the database file tie to this instance of the password manager. 
+- Here is a `hexdump` of the database file for this run of the password manager. 
 ![verification](https://github.com/MegaMan501/PassManager/blob/master/verfication.png)
 
 ## Licenses: 
