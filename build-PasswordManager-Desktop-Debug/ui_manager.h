@@ -73,7 +73,7 @@ public:
             Manager->setObjectName(QStringLiteral("Manager"));
         Manager->setEnabled(true);
         Manager->resize(750, 650);
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Manager->sizePolicy().hasHeightForWidth());
@@ -85,11 +85,8 @@ public:
         accounts_input = new QGroupBox(centralWidget);
         accounts_input->setObjectName(QStringLiteral("accounts_input"));
         accounts_input->setGeometry(QRect(20, 10, 701, 201));
-        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(accounts_input->sizePolicy().hasHeightForWidth());
-        accounts_input->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(accounts_input->sizePolicy().hasHeightForWidth());
+        accounts_input->setSizePolicy(sizePolicy);
         accounts_input->setStyleSheet(QLatin1String("QGroupBox {\n"
 "    border: 2px solid gray;\n"
 "    border-radius: 5px;\n"
@@ -261,6 +258,9 @@ public:
         accounts_table->setContentsMargins(0, 0, 0, 0);
         tableView = new QTableView(layoutWidget1);
         tableView->setObjectName(QStringLiteral("tableView"));
+        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
         tableView->setSizePolicy(sizePolicy1);
         tableView->setAutoFillBackground(false);
