@@ -60,4 +60,4 @@ Verification:
 ## Licenses: 
 - Qt SQL driver plugin for SQLCipher: [qsqlcipher-qt5](https://github.com/sjemens/qsqlcipher-qt5/blob/master/LICENSE) (**LGPLV3**)
 - SQLCipher license: [SQLCipher](https://www.zetetic.net/sqlcipher/license/) (**BSD**)
--Qt5: [Qt5 libraries](https://www.qt.io/licensing/) (**LGPLV3  GPLV2/GPLV3**)
+- Qt5: [Qt5 libraries](https://www.qt.io/licensing/) (**LGPLV3  GPLV2/GPLV3**)
